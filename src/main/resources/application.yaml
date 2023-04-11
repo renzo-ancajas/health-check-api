@@ -1,0 +1,52 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/actuator_test
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: R-ancajas98!
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show-sql: true
+
+management:
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+    shutdown:
+      enabled: true
+    auditevents:
+      enabled: true
+    beans:
+      enabled: true
+    metrics:
+      enabled: true
+  endpoints:
+    beans:
+      id: springbeans
+      sensitive: false
+      enabled: true
+    web:
+      base-path: /actuator
+      exposure:
+        include: [ "health", "info", "shutdown", "beans", "auditevents", "metrics"]
+    jmx:
+      exposure:
+        include:*
+        exlude:*
+  security:
+    enabled: false
+
+  port: 9090
+
+security:
+  basic:
+    enable: false
+  ignored: /**
+
+server:
+  port:8080
